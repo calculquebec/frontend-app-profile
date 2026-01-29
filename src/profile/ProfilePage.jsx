@@ -125,9 +125,8 @@ const ProfilePage = ({ params }) => {
 
   const isAuthenticatedUserProfile = () => params.username === authenticatedUserName;
 
-  const isBlockVisible = (blockInfo) => false;
-	{/*	isAuthenticatedUserProfile()
-      || (!isAuthenticatedUserProfile() && Boolean(blockInfo));*/}
+  const isBlockVisible = (blockInfo) => isAuthenticatedUserProfile()
+      || (!isAuthenticatedUserProfile() && Boolean(blockInfo));
 
   const renderViewMyRecordsButton = () => {
     if (!(viewMyRecordsUrl && isAuthenticatedUserProfile())) {
@@ -317,39 +316,6 @@ const ProfilePage = ({ params }) => {
                       {params.username}
                     </h4>
                   </div>
-                  {isBlockVisible(name) && (
-                  <Name
-                    name={name}
-                    accountSettingsUrl={context.config.ACCOUNT_SETTINGS_URL}
-                    visibilityName={visibilityName}
-                    formId="name"
-                    {...commonFormProps}
-                  />
-                  )}
-                  {isBlockVisible(country) && (
-                  <Country
-                    country={country}
-                    visibilityCountry={visibilityCountry}
-                    formId="country"
-                    {...commonFormProps}
-                  />
-                  )}
-                  {isBlockVisible((languageProficiencies || []).length) && (
-                  <PreferredLanguage
-                    languageProficiencies={languageProficiencies || []}
-                    visibilityLanguageProficiencies={visibilityLanguageProficiencies}
-                    formId="languageProficiencies"
-                    {...commonFormProps}
-                  />
-                  )}
-                  {isBlockVisible(levelOfEducation) && (
-                  <Education
-                    levelOfEducation={levelOfEducation}
-                    visibilityLevelOfEducation={visibilityLevelOfEducation}
-                    formId="levelOfEducation"
-                    {...commonFormProps}
-                  />
-                  )}
 
                   <AdditionalProfileFieldsSlot />
                 </div>
@@ -359,24 +325,6 @@ const ProfilePage = ({ params }) => {
                     isMobileView ? 'pl-0 col-12' : 'pl-40px col-6',
                   ])}
                 >
-                  {isBlockVisible(bio) && (
-                  <Bio
-                    bio={bio}
-                    visibilityBio={visibilityBio}
-                    formId="bio"
-                    {...commonFormProps}
-                  />
-                  )}
-
-                  {isBlockVisible((socialLinks || []).some((link) => link?.socialLink !== null)) && (
-                  <SocialLinks
-                    socialLinks={socialLinks || []}
-                    draftSocialLinksByPlatform={draftSocialLinksByPlatform || {}}
-                    visibilitySocialLinks={visibilitySocialLinks}
-                    formId="socialLinks"
-                    {...commonFormProps}
-                  />
-                  )}
                 </div>
               </div>
             </div>
