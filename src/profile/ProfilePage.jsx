@@ -125,8 +125,9 @@ const ProfilePage = ({ params }) => {
 
   const isAuthenticatedUserProfile = () => params.username === authenticatedUserName;
 
-  const isBlockVisible = (blockInfo) => isAuthenticatedUserProfile()
-      || (!isAuthenticatedUserProfile() && Boolean(blockInfo));
+  const isBlockVisible = (blockInfo) => false;
+	{/*	isAuthenticatedUserProfile()
+      || (!isAuthenticatedUserProfile() && Boolean(blockInfo));*/}
 
   const renderViewMyRecordsButton = () => {
     if (!(viewMyRecordsUrl && isAuthenticatedUserProfile())) {
