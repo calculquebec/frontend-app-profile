@@ -211,7 +211,7 @@ const ProfilePage = ({ params }) => {
                     onSave={handleSaveProfilePhoto}
                     onDelete={handleDeleteProfilePhoto}
                     savePhotoState={savePhotoState}
-                    isEditable={isAuthenticatedUserProfile()}
+                    isEditable={false}
                   />
                   <div
                     className={classNames([
