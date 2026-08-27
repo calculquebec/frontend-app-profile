@@ -125,8 +125,8 @@ const ProfilePage = ({ params }) => {
 
   const isAuthenticatedUserProfile = () => params.username === authenticatedUserName;
 
-  const isBlockVisible = (blockInfo) => isAuthenticatedUserProfile()
-      || (!isAuthenticatedUserProfile() && Boolean(blockInfo));
+  const isBlockVisible = (blockInfo) => isAuthenticatedUserProfile();
+//      || (!isAuthenticatedUserProfile() && Boolean(blockInfo));
 
   const renderViewMyRecordsButton = () => {
     if (!(viewMyRecordsUrl && isAuthenticatedUserProfile())) {
@@ -225,10 +225,10 @@ const ProfilePage = ({ params }) => {
                       {params.username}
                     </p>
                     {isBlockVisible(name) && (
+		    <>
                     <p className="row pt-2 text-gray-800 font-weight-normal m-0 p">
                       {name}
                     </p>
-                    )}
                     <div className={classNames(
                       'row pt-2 m-0',
                       isMobileView
@@ -239,6 +239,7 @@ const ProfilePage = ({ params }) => {
                       <DateJoined date={dateJoined} />
                       <UserCertificateSummary count={courseCertificates?.length || 0} />
                     </div>
+                    </>)}
                   </div>
                   <div className={classNames([
                     'p-0 ',
@@ -316,8 +317,9 @@ const ProfilePage = ({ params }) => {
                       {params.username}
                     </h4>
                   </div>
-
+	          {isAuthenticatedUserProfile() && (
                   <AdditionalProfileFieldsSlot />
+		  )}
                 </div>
                 <div
                   className={classNames([
